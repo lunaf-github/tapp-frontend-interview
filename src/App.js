@@ -5,9 +5,10 @@ import Editor from "./pages/Editor";
 // Instructions: https://github.com/tapp-ai/tapp-frontend-interview#readme
 
 function App() {
+
   return (
     <div className="App">
-      <Editor />
+        <Editor />
     </div>
   );
 }

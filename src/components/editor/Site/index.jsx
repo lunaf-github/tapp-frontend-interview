@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { theme } from "../../../styles/theme";
+import useThemeContext from "../../../utils/useThemeContext";
+import { siteThemes } from "../../../constants/siteThemes";
 
 const Root = styled.div`
   max-width: 600px;
@@ -8,28 +9,32 @@ const Root = styled.div`
   gap: 12px;
 `;
 
-const SiteTitle = styled.h1`
+
+function Site(props) {
+  const {theme} = useThemeContext();
+  
+  const SiteTitle = styled.h1`
   font-size: 24px;
   font-weight: 500;
-  color: ${theme.colors.black[100]}; // Change to Secondary color
+  color: ${siteThemes[theme].secondary};
   margin-bottom: 12px;
-`;
+  `;
 
-const SiteDescription = styled.p`
-  font-size: 16px;
-  font-weight: 400;
-  color: ${theme.colors.black[80]}; // Change to Tertiary color
-`;
+  const SiteDescription = styled.p`
+    font-size: 16px;
+    font-weight: 400;
+    color: ${siteThemes[theme].tertiary};
+  `;
 
-const DocLink = styled.a`
-  text-decoration: none;
-  font-weight: 500;
-  color: ${theme.colors.black[100]}; // Change to Secondary color
-  margin-top: 12px;
-`;
+  const DocLink = styled.a`
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 12px;
+    color: ${siteThemes[theme].secondary};
+    `;
 
 /** Site preview for the Editor page */
-function Site(props) {
+  
   return (
     <Root>
       <SiteTitle>StyleAI Frontend Interview ⭐️</SiteTitle>

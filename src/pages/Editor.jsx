@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { theme } from "../styles/theme";
 import Sidebar from "../components/editor/Sidebar";
 import Site from "../components/editor/Site";
+import { useTheme } from "@mui/material";
 
 // Component Styles
 
@@ -25,37 +26,44 @@ const RootContent = styled.div`
   padding: 32px;
 `;
 
-const SiteWrapper = styled(motion.div)`
-  flex: 1;
-  height: 100%;
-  min-height: 600px;
-  overflow: hidden;
-  border: 1px solid ${theme.colors.black[40]};
-  border-radius: 8px;
-  background-color: ${theme.colors.black[10]}; // Change to Primary color
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 
 const SideBarWrapper = styled(motion.div)`
-  width: 64px;
-  height: 100%;
+width: 64px;
+height: 100%;
 `;
 
 /** Root Editor View */
 function Editor() {
+
+  const contentTheme = useTheme()
+
+  const SiteWrapper = styled(motion.div)`
+    flex: 1;
+    height: 100%;
+    min-height: 600px;
+    overflow: hidden;
+    border: 1px solid ${theme.colors.black[40]};
+    border-radius: 8px;
+    background-color: ${contentTheme.palette.primary.main};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    `;
+
+    // background-color: ${theme.colors.black[10]}; // Change to Primary color
+
   return (
-    <Root>
-      <RootContent>
-        <SiteWrapper layout>
-          <Site />
-        </SiteWrapper>
-        <SideBarWrapper layout>
-          <Sidebar />
-        </SideBarWrapper>
-      </RootContent>
-    </Root>
+
+      <Root>
+        <RootContent>
+          <SiteWrapper layout>
+            <Site />
+          </SiteWrapper>
+          <SideBarWrapper layout>
+            <Sidebar />
+          </SideBarWrapper>
+        </RootContent>
+      </Root>
   );
 }
 
